@@ -3,6 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=platformio,visualstudiocode
 
 ### PlatformIO ###
+.pio
 .pioenvs
 .piolibdeps
 .clang_complete
