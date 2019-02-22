@@ -1,6 +1,6 @@
 // #include <Arduino.h>
 // // #include <LM35.h>
-// #define TempPin A0
+// const int TempPin = A0;
 
 
 // // LM35 temperature(TempPin);
@@ -21,6 +21,9 @@
 
 //     delay(100);
 // }
+
+
+
 
 #include <Arduino.h>
 const int UltraSonicPingPin = 7;
@@ -60,11 +63,11 @@ void detemineDistance() {
 }
 
 void printResult() {
-    Serial.print("Distance: ");
-    Serial.print(inches);
-    Serial.print("in, ");
+    // Serial.print("Distance: ");
+    // Serial.print(inches);
+    // Serial.print("in, ");
     Serial.print(cm);
-    Serial.println("cm");
+    Serial.println("#33");
 }
 
 void loop()
