@@ -21,3 +21,7 @@
 .history
 
 # End of https://www.gitignore.io/api/platformio,visualstudiocode
+
+*.workspace
+*.pdsbak
+*.DS_Store
