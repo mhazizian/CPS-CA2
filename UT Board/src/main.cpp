@@ -38,13 +38,12 @@ float charToFloat() {
     return f;
 }
 
-void printCoordinateToSerial(float x, float y) {
-    Serial.print("Data: "); 
-    Serial.print(x); 
-    Serial.print(", "); 
-    Serial.print(y);
-    Serial.print(", current result: "); 
-    Serial.println(result);
+void printCoordinateToSerial(float x, float y) { 
+    // Serial.print(x); 
+    // Serial.print(", "); 
+    // Serial.print(y);
+    Serial.print(result);
+    Serial.print('$'); 
 }
 
 void setup() {

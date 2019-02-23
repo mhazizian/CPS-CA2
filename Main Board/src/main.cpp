@@ -52,9 +52,23 @@ void loop() {
             }
         }
         temperature[i] = '\0';
-        lcd.setCursor(0, 2);
+        lcd.setCursor(0, 1);
         lcd.print(distance);
-        lcd.setCursor(0, 3);
+        lcd.setCursor(0, 2);
         lcd.print(temperature);
+    }
+    if (Serial.available()) {
+        i = 0;
+        while(i < COORDINATE_MAX_CHAR) {
+            if (Serial.available()) {
+                char c = Serial.read();
+                if (c == END_OF_LINE)
+                    break;
+                coordinate[i++] = c;
+            }
+        }
+        coordinate[i] = '\0';
+        lcd.setCursor(0, 0);
+        lcd.print(coordinate);
     }
 }
