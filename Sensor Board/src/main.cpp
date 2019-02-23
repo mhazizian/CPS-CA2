@@ -67,7 +67,8 @@ void printResult() {
     // Serial.print(inches);
     // Serial.print("in, ");
     Serial.print(cm);
-    Serial.println("#33");
+    Serial.print("#33");
+    Serial.print("$");
 }
 
 void loop()
