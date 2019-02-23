@@ -1,6 +1,6 @@
 // #include <Arduino.h>
-// // #include <LM35.h>
-// const int TempPin = A0;
+
+
 
 
 // // LM35 temperature(TempPin);
@@ -22,16 +22,38 @@
 //     delay(100);
 // }
 
+// #include <Arduino.h>
+
+// float tempC;
+// int reading;
+// int tempPin = A1;
+
+// void setup()
+// {
+// analogReference(INTERNAL);
+// Serial.begin(9600);
+// }
+
+// void loop()
+// {
+// reading = analogRead(tempPin);
+// tempC = reading / 9.31;
+// Serial.println(tempC);
+// delay(100);
+// }
+
 
 
 
 #include <Arduino.h>
 
 #define END_OF_LINE '$'
+const int TempPin = A1;
 const int UltraSonicPingPin = 7;
-const int UltraSonicEchoPin = 6; // Echo Pin of Ultrasonic Sensor
+const int UltraSonicEchoPin = 6;
 
 long  inches, cm;
+float tempC;
 
 long microsecondsToInches(long microseconds)
 {
@@ -47,7 +69,9 @@ void setup()
 {
     pinMode(UltraSonicEchoPin, INPUT);
     pinMode(UltraSonicPingPin, OUTPUT);
+    analogReference(INTERNAL);
     Serial.begin(9600);
+    
 }
 
 void createUSPulse() {
@@ -65,18 +89,21 @@ void detemineDistance() {
 }
 
 void printResult() {
-    // Serial.print("Distance: ");
-    // Serial.print(inches);
-    // Serial.print("in, ");
     Serial.print(cm);
-    Serial.print("#33");
+    Serial.print('#');
+    Serial.print(tempC);
     Serial.print(END_OF_LINE);
+}
+
+void calculateTemp() {
+    tempC = analogRead(TempPin) / 9.31;
 }
 
 void loop()
 {
     createUSPulse();
     detemineDistance();
+    calculateTemp();
 
     printResult();
     delay(100);
