@@ -1,9 +1,15 @@
 #include <Arduino.h>
 #include <LiquidCrystal.h>
+#include <AltSoftSerial.h>
+
 
 #define DISTANCE_MAX_CHAR 10
 #define TEMPERATURE_MAX_CHAR 10
 #define COORDINATE_MAX_CHAR 10
+#define END_OF_LINE '$'
+
+
+AltSoftSerial altSerial;
 
 char distance[DISTANCE_MAX_CHAR + 1];
 char temperature[TEMPERATURE_MAX_CHAR + 1];
@@ -17,6 +23,7 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 void setup() {
   lcd.begin(20, 4);
   Serial.begin(9600);
+  altSerial.begin(9600);
 }
 
 void loop() {
@@ -24,11 +31,11 @@ void loop() {
     // set the cursor to column 0, line 1
     // (note: line 1 is the second row, since counting begins with 0):
     // print the number of seconds since reset:
-    if (Serial.available()) {
+    if (altSerial.available()) {
         // delay(100); //allows all serial sent to be received together
         while(i < DISTANCE_MAX_CHAR) {
-            if (Serial.available()) {
-                char c = Serial.read();
+            if (altSerial.available()) {
+                char c = altSerial.read();
                 if (c == '#')
                     break;
                 distance[i++] = c;
@@ -37,9 +44,9 @@ void loop() {
         distance[i] = '\0';
         i = 0;
         while(i < TEMPERATURE_MAX_CHAR) {
-            if (Serial.available()) {
-                char c = Serial.read();
-                if (c == '$')
+            if (altSerial.available()) {
+                char c = altSerial.read();
+                if (c == END_OF_LINE)
                     break;
                 temperature[i++] = c;
             }

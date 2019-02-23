@@ -26,6 +26,8 @@
 
 
 #include <Arduino.h>
+
+#define END_OF_LINE '$'
 const int UltraSonicPingPin = 7;
 const int UltraSonicEchoPin = 6; // Echo Pin of Ultrasonic Sensor
 
@@ -68,7 +70,7 @@ void printResult() {
     // Serial.print("in, ");
     Serial.print(cm);
     Serial.print("#33");
-    Serial.print("$");
+    Serial.print(END_OF_LINE);
 }
 
 void loop()
