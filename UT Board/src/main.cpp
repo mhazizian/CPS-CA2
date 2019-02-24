@@ -62,7 +62,7 @@ void loop() {
         receivedData[i] = readData(yDataReg[i]);
 
     float yData = charToFloat();
-    result += pow(2, xData * xData) + yData;
+    result += xData * xData + yData * yData;
 
     printCoordinateToSerial(xData, yData);
     delay(100);
