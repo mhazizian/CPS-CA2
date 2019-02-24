@@ -1,6 +1,8 @@
 #include <Arduino.h>
 
 #define END_OF_LINE '$'
+#define DATA_DELIMITER '#'
+
 const int TempPin = A1;
 const int UltraSonicPingPin = 7;
 const int UltraSonicEchoPin = 6;
@@ -43,7 +45,7 @@ void detemineDistance() {
 
 void printResult() {
     Serial.print(cm);
-    Serial.print('#');
+    Serial.print(DATA_DELIMITER);
     Serial.print(tempC);
     Serial.print(END_OF_LINE);
 }
